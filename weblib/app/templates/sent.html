@@ -1,0 +1,114 @@
+﻿{% extends "base.html" %}
+{% block content %}
+ <ul class="breadcrumb">
+		<li>
+			 <a href="/index">交流中心</a>>
+			 <a href="/index_1/{{post_type}}">
+			 {%if post_type == 0%}读后感交流{% elif post_type == 1%}书单分享
+			 {% elif post_type == 2%}图书馆自习{% elif post_type == 3%}意见反馈
+			 {% elif post_type == 4%}其他交流{% endif%}
+			 </a>>{{post.post_article}}
+		</li>
+		<li class = "pull-right">
+			{% if view == False %}
+			<a class="btn btn-danger btn-sm" href="/post_view/{{post.id}}/{{post_type}}/{{page}}" >关注</a>
+			{% else %}
+			<a href="#" class="btn btn-danger disabled btn-sm" >已关注</a>
+			{% endif %}
+		</li>
+</ul>
+			
+<table class="table table-hover">	
+	{% if page == 1 %}
+	<tbody>
+			<tr>
+				<td class = "sent">
+					<div class="sent_left">
+						<a href="/otherinfo/{{post.user_id}}"><img id = "post" src="/static/{{post_image_name}}"  alt="加载出错" width="75px" height="75px" ></a>
+						<hr/>
+						<div class="sent_username">
+							<a href="/otherinfo/{{post.user_id}}">{{post_user_name}}</a>
+						</div>
+					</div>	
+					<div class="sent_middle">
+						<div class="content">{% autoescape false %}
+												{{ post.post_body | replace("\n", "<br/>") }}
+												{% endautoescape %} </div>
+						<p class="sent_clock"><span class="glyphicon glyphicon-time"></span>  {{post_time}}</p>
+					</div>
+				</td>
+			</tr>
+	</tbody>	
+	{% endif %}
+	{% if sent %}
+	{% for i in sent %}	
+	<tbody>
+		<tr>
+			<td class = "sent">
+				<div class="sent_left">
+					<a href="/otherinfo/{{i.sent_from_id}}"><img id = "sent" src="/static/{{sent_image_name[loop.index0]}}"  alt="加载出错"  width="75px" height="75px"></a>
+					<hr/>
+					<div class="sent_username">
+						<a href="/otherinfo/{{i.sent_from_id}}">{{sent_user_name[loop.index0]}}</a>
+					</div>
+				</div>	
+				<div class="sent_middle">
+					<div class="content">{% autoescape false %}
+												{{ i.sent_body | replace("\n", "<br/>") }}
+												{% endautoescape %} </div>
+					<p class="sent_clock"><span class="glyphicon glyphicon-time"></span>  {{sent_time[loop.index0]}}</p>
+				</div>
+			</td>
+		</tr>
+	</tbody>		
+	{% endfor %}
+	{% endif %}
+</table>
+<div class="ep-pages"> 
+    <a href="/sent/{{post.id}}/{{post_type}}" target="_self">首页</a>
+	{% if page != 1 %}
+	<a href="/sent/{{post.id}}/{{post_type}}/{{page-1}}" target="_self" class="ep-pages-ctrl">&lt;</a> 
+	{% endif %}
+	{% if page_cnt <=5 %}
+		{% for num in range(1, page_cnt+1)%}
+			{% if num == page %}
+			<a href="/sent/{{post.id}}/{{post_type}}/{{page}}" target="_self" class="current">{{page}}</a>
+			{% else %}
+			<a href="/sent/{{post.id}}/{{post_type}}/{{num}}" target="_self">{{num}}</a>
+			{% endif %}
+		{% endfor%}
+	{% elif page < 4 %}
+		{% for num in range(1, 6)%}
+			{% if num == page %}
+			<a href="/sent/{{post.id}}/{{post_type}}/{{page}}" target="_self" class="current">{{page}}</a>
+			{% else %}
+			<a href="/sent/{{post.id}}/{{post_type}}/{{num}}" target="_self">{{num}}</a>
+			{% endif %}
+		{% endfor%}
+	{% else %}
+		{% for num in range(page-2, page+3)%}
+			{% if num == page %}
+			<a href="/sent/{{post.id}}/{{post_type}}/{{page}}" target="_self" class="current">{{page}}</a>
+			{% else %}
+			<a href="/sent/{{post.id}}/{{post_type}}/{{num}}" target="_self">{{num}}</a>
+			{% endif %}
+		{% endfor%}
+	{% endif %}
+	{% if page != page_cnt%}
+	 <a href="/sent/{{post.id}}/{{post_type}}/{{page+1}}" target="_self" class="ep-pages-ctrl">&gt;</a> 
+	{% endif %}
+	 <a href="/sent/{{post.id}}/{{post_type}}/{{page_cnt}}" target="_self">尾页</a>
+</div> 
+<form action ="" method="post" name="login">
+{{form.hidden_tag()}}
+<div class="form-group">
+	<label for="content">内容</label>{{form.content(class='form-control',rows='5',placeholder="Enter content")}}
+</div>
+<button type="submit" class="btn btn-primary ">发送一个话题</button>
+</form>	
+
+<script type="text/javascript">
+document.getElementById('post').src = document.getElementById('post').src  + "?" + Math.random()
+document.getElementById('sent').src = document.getElementById('sent').src + "?" + Math.random()
+</script>
+{% endblock %}

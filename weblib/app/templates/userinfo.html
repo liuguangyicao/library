@@ -1,0 +1,101 @@
+﻿{% extends "base.html" %}
+{% block nav %}
+<ul class="nav nav-tabs nav-justified" >
+	<li><a href="/index">交流中心</a></li>
+	<li><a href="/trade">旧书交易</a></li>
+	<li><a href="/recommend">图书推荐</a></li>
+	<li><a href="/location">位置搜索</a></li>
+	<li><a href="/search">图书搜索</a></li>
+	<li class="active"><a href="/userinfo">个人中心</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+
+<div class="panel panel-success">
+	<div class="recommended-info panel-title">
+		<h3 style="margin:10px;">个人中心</h3>
+	</div>
+	<div class="panel-body ">
+	<div class="jumbotron well userinfo">
+		<div class="pull-left userinfo-img">
+			{% if image == False%}
+			<img src="/static/face.gif" id = "post2" alt="加载出错" width="64%" height="80%" />
+			{% else %}
+			<img src="/static/{{image_name}}" id = "post2" alt="加载出错" width="64%" height="80%" />
+			{% endif %}
+		</div>	
+		<div class="media-body userinfo-info">
+			<h3 class="media-heading userinfo-username">
+				 用户：{% if current_user.is_authenticated %} {{current_user.username}} {% endif %}
+			</h3>
+			<br/>
+			<span>发布话题数:{{post_cnt}}</span>
+			<span class="userinfo_split"></span>
+			<span>回复数:{{trade_cnt}}</span>	
+			<span class="userinfo_split"></span>
+			<span>关注话题数:{{post_view_cnt}}</span>	
+			<span class="userinfo_split"></span>
+			<span>发布交易数:{{trade_cnt}}</span>	
+			<span class="userinfo_split"></span>			
+			<span>关注交易数:{{trade_view_cnt}}</span>	
+			
+		</div>
+	</div>
+	<hr/>
+	<div class="row clearfix">
+		<div class="col-md-3 column">
+			<ul class="nav nav-stacked nav-pills">
+				<li class="active">
+					 <a href="/userinfo">个人资料</a>
+				</li>
+				<li>
+					 <a href="/myindex">我的发布</a>
+				</li>
+				<li>
+					 <a href="/mysent">我的回复</a>
+				</li>
+				<li>
+					 <a href="/mytrade">我的交易</a>
+				</li>
+				<li>
+					 <a href="/myview">我的关注</a>
+				</li>
+				<li>
+					<a href="/changeimage">修改头像</a>
+				</li>
+				<li>
+					<a href="/changepassword">修改密码</a>
+				</li>	
+			</ul>
+		</div>
+		<div class="col-md-9 column">
+			{% if userinfo %}
+			<dl class="dl-horizontal">
+			{% for i in userinfo%}
+			<dt>{{head[loop.index0]}}</dt>
+			{% if i  %}
+			<dd>{{i}}</dd>
+			{% else %}
+			<dd></dd>
+			{% endif %}
+			<br/>
+			{% endfor %}
+			</dl>
+			{% else %}
+			<dl class="dl-horizontal">
+			{% for i in head %}
+			 <dt>{{i}}</dt>
+			 <dd></dd>
+			 <br/>
+			 {% endfor %}
+			</dl>
+			{% endif %}
+			<a href="/changeinfo" class="btn btn-info btn-default" role="button">修改个人资料</a>		
+		</div>
+	</div>
+	</div>
+	</div>
+<script type="text/javascript">
+document.getElementById('post2').src = document.getElementById('post2').src  + "?" + Math.random()
+</script>
+{% endblock %}

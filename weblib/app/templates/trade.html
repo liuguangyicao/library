@@ -1,0 +1,185 @@
+﻿{% extends "base.html" %}
+{% block nav %}
+<ul class="nav nav-tabs nav-justified" >
+	<li ><a href="/index">交流中心</a></li>
+	<li class="active"><a href="/trade">旧书交易</a></li>
+	<li><a href="/recommend">图书推荐</a></li>
+	<li><a href="/location">位置搜索</a></li>
+	<li><a href="/search">图书搜索</a></li>
+	<li><a href="/userinfo">个人中心</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="panel-success panel">
+	<div class="recommended-info panel-title">
+		<h3 style="margin:10px;">旧书交易</h3>
+	</div>
+	<div class="panel-body ">
+	 <ul class="breadcrumb">
+		{% if trade_type == 1%}
+		<li class="active">
+			 按时间排序
+		</li>
+		<li>
+			 <a href="/trade/1/2">按关注数排序</a>
+		</li>
+		<li>
+			 <a href="/trade/1/3">我的关注</a>
+		</li>
+		{% elif trade_type == 2%}
+		<li>
+			  <a href="/trade/1/1">按时间排序</a>
+		</li>
+		<li class="active">
+			按关注数排序
+		</li>
+		<li>
+			 <a href="/trade/1/3">我的关注</a>
+		</li>
+		{% else %}
+		<li>
+			 <a href="/trade/1/1">按时间排序</a>
+		</li>
+		<li>
+			 <a href="/trade/1/2">按关注数排序</a>
+		</li>
+		<li class="active">
+			 我的关注
+		</li>
+		{% endif %}
+		<li class = "pull-right">
+			<button class="btn btn-info btn-sm " data-toggle="modal" data-target="#myModal">发起交易</button>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 class="modal-title" id="myModalLabel">发起交易</h3>
+						</div>
+						
+						<div class="modal-body">
+						<dl class="dl-horizontal">
+						<form action="" method="POST" name="recommend" enctype="multipart/form-data">
+						{{ form.hidden_tag() }}
+						<dt>交易类型</dt>
+						<dd>{{form.trade_type(class='form-control',id='trade_type')}}</dd>
+						</br>
+						<dt>图片:</dt>
+						<dd>{{form.photo}}</dd>
+						{% for error in form.photo.errors %}
+						<span style="color: red;">{{ error }}</span>
+						{% endfor %}
+						</br>
+						<dt>内容</dt>
+						<dd>{{form.body(class='form-control',rows='3')}}</dd>
+						</br>
+						<dt>原价</dt>
+						<dd>{{form.old_pay(class='form-control',type="number",step="0.01")}}</dd>
+						</br>
+						<dt>现价</dt>
+						<dd>{{form.new_pay(class='form-control',type="number",step="0.01")}}</dd>
+						</br>
+						</dl>
+						</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-primary">提交交易</button>
+						</div>
+						</form>
+						</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+		</li>
+	</ul>
+			
+			
+	<table class="table table-hover">
+		{% if all_trade %}
+		{% for i in all_trade %}	
+			<tbody>
+				<tr>
+					<td class = "trade">	
+						<div class = "trade_left">
+						<img id = "trade" src="/static/{{i.image_name}}"  alt="加载出错" width="68%" height="100%" >
+						</div>
+						<div class="trade_middle">			
+							<a class = "trade_user" href="#">发布人:  {{i.user_username}}</a>
+							<div class="trade_content">
+								{% autoescape false %}
+												{{ i.body | replace("\n", "<br/>") }}
+												{% endautoescape %}
+							</div>
+							<p class="trade_clock"><span class="glyphicon glyphicon-time">  {{trade_time[loop.index0]}}</span></p>
+						</div>	
+						<div class="trade_middle_second">
+							<div class="trade_money">
+								<span class="trade_middle_content"> 原价:   </span>￥{{i.old_pay}}
+							</div>
+							<div class="trade_money">
+								<span class="trade_middle_content"> 现价:   </span>￥{{i.new_pay}}
+							</div>
+							<div class="trade_middle_content">
+								关注数:   {{i.view}}
+							</div>
+						</div>
+						<div class="trade_right">
+								{% if name != i.user_username %}
+								<a href="/message/{{i.user_username}}" class="btn btn-danger trade_button" target="_blank" role="button">私信</a>
+								{% else %}
+								<a href="#" class="btn btn-danger disabled trade_button"  role="button">私信</a>
+								{% endif %}
+								</br>
+								</br>
+								{% if view[loop.index0] == 0 %}
+								<a href="/trade_view/{{i.id}}/{{page}}/{{trade_type}}" class="btn btn-danger trade_button" role="button">关注</a>
+								{% else %}
+								<a href="/delete_trade_view/{{i.id}}/{{page}}/{{trade_type}}" class="btn btn-danger disabled trade_button" role="button">已关注</a>
+								{% endif %}
+										
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		{% endfor %}
+		{% endif %}
+	</table>
+	 <hr/>
+	 <div class="ep-pages"> 
+		<a href="/trade/1/{{trade_type}}" target="_self">首页</a>
+		{% if page != 1 %}
+		<a href="/trade/{{page-1}}/{{trade_type}}" target="_self" class="ep-pages-ctrl">&lt;</a> 
+		{% endif %}
+		{% if page_cnt <=5 %}
+			{% for num in range(1, page_cnt+1)%}
+				{% if num == page %}
+				<a href="/trade/{{page}}/{{trade_type}}" target="_self" class="current">{{page}}</a>
+				{% else %}
+				<a href="/trade/{{num}}/{{trade_type}}" target="_self">{{num}}</a>
+				{% endif %}
+			{% endfor%}
+		{% elif page < 4 %}
+			{% for num in range(1, 6)%}
+				{% if num == page %}
+				<a href="/trade/{{page}}/{{trade_type}}" target="_self" class="current">{{page}}</a>
+				{% else %}
+				<a href="/trade/{{num}}/{{trade_type}}" target="_self">{{num}}</a>
+				{% endif %}
+			{% endfor%}
+		{% else %}
+			{% for num in range(page-2, page+3)%}
+				{% if num == page %}
+				<a href="/trade/{{page}}/{{trade_type}}" target="_self" class="current">{{page}}</a>
+				{% else %}
+				<a href="/trade/{{num}}/{{trade_type}}" target="_self">{{num}}</a>
+				{% endif %}
+			{% endfor%}
+		{% endif %}
+		{% if page != page_cnt%}
+		 <a href="/trade/{{page+1}}/{{trade_type}}" target="_self" class="ep-pages-ctrl">&gt;</a> 
+		{% endif %}
+		 <a href="/trade/{{page_cnt}}/{{trade_type}}" target="_self">尾页</a>
+	</div> 
+	</div> 
+</div> 
+{% endblock %}

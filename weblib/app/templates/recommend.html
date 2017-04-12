@@ -1,0 +1,49 @@
+﻿{% extends "base.html" %}
+{% block nav %}
+<ul class="nav nav-tabs nav-justified" >
+	<li><a href="/index">交流中心</a></li>
+	<li><a href="/trade">旧书交易</a></li>
+	<li class = "active"><a href="/recommend">图书推荐</a></li>
+	<li><a href="/location">位置搜索</a></li>
+	<li><a href="/search">图书搜索</a></li>
+	<li><a href="/userinfo">个人中心</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+  
+<div class="panel-success panel">
+	<div class="recommended-info panel-title">
+		<h3 style="margin:10px;">图书推荐</h3>
+	</div>
+	<hr/>
+	<div class="panel-body ">
+	{% if recommend %}
+	{% for i in recommend %}
+		<div class="col-md-4 recommend-body">
+			<div class = "recommend-img">
+			<img id = "post2" src="/static/{{i.image}}"  alt="加载出错" width="150px" height="200px" >
+			</div>
+			<div class = "recommend-content">
+				<dl>
+					<dt><span>
+						作者:{{i.writer}}
+					</span>{{i.article}}
+					</dt>
+					<dd>
+						{% autoescape false %}
+						{{ i.body | replace("\n", "<br/>") }}
+						{% endautoescape %}
+					</dd>
+					<dd class = "recommend-click">
+					<div><span class="glyphicon glyphicon-thumbs-up">{{i.click}}</span>&nbsp;&nbsp;<a href="/recommend_add/{{i.id}}" class="btn btn-danger  btn-sm recommend_button " role="button">点赞</a>	</div>	
+					</dd>
+				</dl>
+			
+			</div>
+		</div>	
+	{% endfor %}
+	{% endif %}
+	</div>
+</div>
+
+{% endblock %}

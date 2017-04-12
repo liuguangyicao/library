@@ -1,0 +1,68 @@
+﻿{% extends "base.html" %}
+{% block nav %}
+<ul class="nav nav-tabs nav-justified" >
+	<li class="active"><a href="/index">交流中心</a></li>
+	<li><a href="/trade">旧书交易</a></li>
+	<li><a href="/recommend">图书推荐</a></li>
+	<li><a href="/location">位置搜索</a></li>
+	<li><a href="/search">图书搜索</a></li>
+	<li><a href="/userinfo">个人中心</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="panel panel-success">
+	<div class="recommended-info panel-title">
+		<h3 style="margin:10px;">交流天地</h3>
+	</div>
+	<div class="panel-body ">
+		{% for i in range(5)%}
+		{% if i == 0 %}
+		<div class="panel panel-primary">
+		{% elif i == 1%}
+		<div class="panel panel-success">
+		{% elif i == 2%}
+		<div class="panel panel-info">
+		{% elif i == 3%}
+		<div class="panel panel-warning">
+		{% elif i == 4%}
+		<div class="panel panel-danger">
+		{% endif %}
+			<div class="panel-heading">
+			<h3 class="panel-title">
+			{% if i == 0 %}
+				<a href="/index_1/{{i}}">读后感交流</a><a href = "/index_1/{{i}}" class = "pull-right">>>进入</a>
+			{% elif i == 1%}
+				<a href="/index_1/{{i}}">书单分享</a><a href = "/index_1/{{i}}" class = "pull-right">>>进入</a>
+			{% elif i == 2%}
+				<a href="/index_1/{{i}}">图书馆自习</a><a href = "/index_1/{{i}}" class = "pull-right">>>进入</a>
+			{% elif i == 3%}
+				<a href="/index_1/{{i}}">意见反馈</a><a href = "/index_1/{{i}}" class = "pull-right">>>进入</a>
+			{% elif i == 4%}
+				<a href="/index_1/{{i}}">其他交流</a><a href = "/index_1/{{i}}" class = "pull-right">>>进入</a>
+			{% endif %}	
+			</h3>
+			</div>
+			
+			<div class="panel-body">
+			{% if i == 0 %}
+				<p>每有会意，欣然忘食，交流感想，提升境界。</p>	
+			{% elif i == 1%}
+				<p>读书万卷，下笔有神，分享书单，造福大家。</p>
+			{% elif i == 2%}
+				<p>书山有路，以勤为径，相约自习，互相帮助。</p>
+			{% elif i == 3%}
+				<p>以小见大，小处做起，反馈问题，提升服务。</p>
+			{% elif i == 4%}
+				<p>交流其他各方面的问题。</p>
+			{% endif%}
+				<p>发布数:{{post_num[i]}}</p>
+				<p>回复数:{{sent_num[i]}}</p>
+			</div>
+		</div>
+		{% endfor%}
+	</div>	
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,68 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<hr/>
+
+<div class="row clearfix">
+	<div class="col-md-3 column">
+		<ul class="nav nav-stacked nav-pills">
+			<li class="active">
+				 <a href="#">和{{sent_to}}的对话</a>
+			</li>
+			{% if other %}
+			{% for i in other%}
+			<li>
+				 <a href="/message/{{i}}">和{{i}}的对话</a>
+			</li>
+			{% endfor %}
+			{% endif %}
+			
+		</ul>
+	</div>
+	<div class="col-md-9 column">
+		<div class="message">
+			<div class="tabbable" id="tabs-457564">
+				<div class="tab-content message_s">
+					<div class="tab-pane active" id="1">
+						{%if message %}
+						{%for i in message%}
+						{% if i[2] == 1%}
+						<p class = "message_item yj">
+							&nbsp&nbsp&nbsp&nbsp{{name}}:<br/>
+							&nbsp&nbsp&nbsp&nbsp{% autoescape false %}
+												{{ i[1] | replace("\n", "<br/>") }}
+												{% endautoescape %}
+						</p>
+						{% else%}
+						<p class = "message_item_2 yj">
+						&nbsp&nbsp&nbsp&nbsp
+							{{sent_to}}:<br/>
+							&nbsp&nbsp&nbsp&nbsp{% autoescape false %}
+												{{ i[1] | replace("\n", "<br/>") }}
+												{% endautoescape %}
+						</p>
+					
+						{% endif%}
+						{% endfor %}
+						{% endif%}
+					</div>
+				</div>
+				<ul class="pagination">
+					<li class="active">
+						 <a href="#1" data-toggle="tab">1</a>
+					</li>
+				</ul>
+				<hr/>
+				<form action ="" method="post" name="message">
+				{{form.hidden_tag()}}
+				<div class = "message_body">
+				<div class="form-group">
+					{{form.body(class='form-control',rows='2')}}
+				</div>
+				</div>
+				<button type="submit" class="btn btn-primary message_button ">发送</button>
+				</form>	
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

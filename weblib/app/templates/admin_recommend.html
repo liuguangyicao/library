@@ -1,0 +1,155 @@
+﻿{% extends "admin.html" %}
+{% block nav %}
+<li class = "active">
+	 <a href="/admin_index">添加推荐</a>
+</li>
+<li>
+	 <a href="/admin_name_password">用户信息</a>
+</li>
+<li>
+	 <a href="/admin_post">用户发布</a>
+</li>
+<li>
+	 <a href="/admin_sent">用户回复</a>
+</li>
+<li>
+	 <a href="/admin_trade">用户交易</a>
+</li>
+
+
+<li>
+	 <a href="/admin_location">座位搜索</a>
+</li>
+
+{% endblock %}
+{% block content %}
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>
+				编号
+			</th>
+			<th>
+				书名
+			</th>
+			<th>
+				作者
+			</th>
+			<th>
+				点赞数
+			</th>
+			<th>
+				详情
+			</th>
+			<th>
+				删除发布
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% if recommend %}
+	{% for i in recommend %}
+		<tr >
+			<td>
+				{{loop.index}}
+			</td>
+			<td>
+				{{i.article}}
+			</td>
+			<td>
+				 {{i.writer}}
+			</td>
+			<td>
+				 {{i.click}}
+			</td>
+			<td>
+				<button class="btn btn-primary btn-info" data-toggle="modal" data-target="#{{i.id}}">详情</button>
+				<div class="modal fade" id="{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h3 class="modal-title" id="myModalLabel">推荐详情</h3>
+							</div>
+							
+							<div class="modal-body">
+								<div class = "recommend">
+									<div class = "recommend_left">
+									<img id = "post" src="/static/{{i.image}}"  alt="加载出错" width="180px" height="220px" >
+									</div>
+									<div class = "recommend_right">
+										<dl class="dl-horizontal">
+					
+											<dt>书名:</dt>
+											<dd>{{i.article}}</dd>
+											</br>
+											<dt>作者:</dt>
+											<dd>{{i.writer}}</dd>
+											</br>
+											<dt>推荐理由</dt>
+											<dd>{% autoescape false %}
+												{{ i.body | replace("\n", "<br/>") }}
+												{% endautoescape %}
+											</dd>
+											</br>
+										</dl>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							</div>
+							</form>
+							</div><!-- /.modal-content -->
+					</div><!-- /.modal -->
+				</div>
+			</td>
+			<td>
+				 <a href="/admin_index_delete/{{i.id}}">删除</a>
+			</td>
+		</tr>
+	{% endfor%}
+	{% endif %}
+	</tbody>
+</table>
+{% if recommend_cnt != 12 %}
+<button class="btn btn-primary " data-toggle="modal" data-target="#myModal">添加推荐</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3 class="modal-title" id="myModalLabel">提交推荐</h3>
+			</div>
+			
+			<div class="modal-body">
+			<dl class="dl-horizontal">
+			<form action="" method="POST" name="recommend" enctype="multipart/form-data">
+			{{ form.hidden_tag() }}
+			<dt>图片:</dt>
+			<dd>{{form.photo}}</dd>
+			{% for error in form.photo.errors %}
+			<span style="color: red;">{{ error }}</span>
+			{% endfor %}
+			</br>
+			<dt>书名</dt>
+			<dd>{{form.article(class='form-control',id='article',placeholder="Enter bookname")}}</dd>
+			</br>
+			<dt>作者名</dt>
+			<dd>{{form.writer(class='form-control',id='writer',placeholder="Enter writername")}}</dd>
+			</br>
+			<dt>推荐理由</dt>
+			<dd>{{form.body(class='form-control',id = 'body',rows='5',placeholder="Enter content")}}</dd>
+			</br>
+			</dl>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			<button type="submit" class="btn btn-primary">提交更改</button>
+			</div>
+			</form>
+			</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+{% endif %}
+{% endblock %}

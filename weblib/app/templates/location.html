@@ -1,0 +1,105 @@
+﻿{% extends "base.html" %}
+{% block nav %}
+<ul class="nav nav-tabs nav-justified" >
+	<li><a href="/index">交流中心</a></li>
+	<li><a href="/trade">旧书交易</a></li>
+	<li><a href="/recommend">图书推荐</a></li>
+	<li class="active"><a href="/location">位置搜索</a></li>
+	<li><a href="/search">图书搜索</a></li>
+	<li><a href="/userinfo">个人中心</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="panel panel-success">
+	<div class="recommended-info panel-title">
+		<h3 style="margin:10px;">位置搜索</h3>
+	</div>
+	
+	<div class="panel-body ">
+		<table class="table">
+			<tbody>
+			
+				<form action="" method="POST" name="userinfo">
+				{{ form.hidden_tag() }}
+				<tr>
+					<td>
+					座位搜索
+					
+						<dl class="dl-horizontal">
+						
+							<dt>楼层:</dt>
+							<dd>{{form.floor(class='form-control',id='floor')}}</dd>
+							<br/>
+							<dt>有插座:</dt>
+							<dd>{{form.elec(class='form-control',id='elec')}}</dd>
+							
+						</dl>
+					</td>	
+					<td>
+					<br/>
+						<dl class="dl-horizontal">
+							<dt>靠近饮水机:</dt>
+							<dd>{{form.water(class='form-control',id='water')}}</dd>
+							<br/>
+							<dt>靠近电梯:</dt>
+							<dd>{{form.lift(class='form-control',id='lift')}}</dd>
+						</dl>
+					</td>
+					<td>
+					<br/>
+						<dl class="dl-horizontal">
+							<dt>靠近窗户</dt>
+							<dd>{{form.sun(class='form-control',id='sun')}}</dd>
+							<dt></dt>
+							<br/>
+							<dd><button type="submit" class="btn btn-info ">提交</button></dd>
+						</dl>
+					</td>
+				
+				</tr>
+				</form>	
+				<form action="" method="POST" name="query">
+				{{ form2.hidden_tag() }}		
+				<tr>
+					<td>
+					条件查询
+						<dl class="dl-horizontal">
+							<dt>输入座位号：</dt>
+							<dd>{{form2.query(class='form-control',id='query')}}</dd>
+							
+						</dl>
+					</td>
+					<td>
+					</br>
+					<button type="submit" class="btn btn-info ">提交</button>
+					</td>
+				</tr>	
+				</form>
+			</tbody>
+		</table>
+		<hr/>
+		{% if location %}
+		<p class = "location">
+		<h4>可选座位号</h4>
+		{% for i in location %}
+		&nbsp;&nbsp;&nbsp;&nbsp;座位号:{{i.num}}&nbsp;&nbsp;&nbsp;
+		{% if loop.index % 10 == 0%}
+		<br/>
+		{% endif %}
+		{% endfor%}				
+		</p>
+		{% endif %}
+		{% if result %}
+		<div>
+		<h4>{%for i in range(7)%}&nbsp;{%endfor%} 座位号:&nbsp;&nbsp;{{result.num}} {%for i in range(7)%}&nbsp;{%endfor%}楼层:&nbsp;&nbsp;{{result.floor}}</h4>
+		<h4> {%for i in range(7)%}&nbsp;{%endfor%}有插座:&nbsp;&nbsp;{% if result.elec==0%}<span class="label label-danger">✗</span>{%else%}<span class="label label-success">✓</span>{%endif%}</h4>
+		<h4> {%for i in range(7)%}&nbsp;{%endfor%}靠近饮水机:&nbsp;&nbsp;{% if result.water==0%}<span class="label label-danger">✗</span>{%else%}<span class="label label-success">✓</span>{%endif%}</h4>
+		<h4> {%for i in range(7)%}&nbsp;{%endfor%}靠近电梯:&nbsp;&nbsp;{% if result.lift==0%}<span class="label label-danger">✗</span>{%else%}<span class="label label-success">✓</span>{%endif%}</h4>
+		<h4> {%for i in range(7)%}&nbsp;{%endfor%}靠近窗户:&nbsp;&nbsp;{% if result.sun==0%}<span class="label label-danger">✗</span>{%else%}<span class="label label-success">✓</span>{%endif%}</h4>	
+		</div>
+		{% endif %}
+	</div>
+	
+</div>
+{% endblock %}

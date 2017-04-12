@@ -1,0 +1,141 @@
+﻿{% extends "admin.html" %}
+{% block nav %}
+<li>
+	 <a href="/admin_index">添加推荐</a>
+</li>
+<li>
+	 <a href="/admin_name_password">用户信息</a>
+</li>
+<li>
+	 <a href="/admin_post">用户发布</a>
+</li>
+<li>
+	 <a href="/admin_sent">用户回复</a>
+</li>
+<li>
+	 <a href="/admin_trade">用户交易</a>
+</li>
+
+<li>
+	 <a href="/admin_location">座位搜索</a>
+</li>
+
+{% endblock %}
+{% block content %}
+<button class="btn btn-info" data-toggle="modal" data-target="#myModal">添加排行</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3 class="modal-title" id="myModalLabel">提交</h3>
+			</div>
+			
+			<div class="modal-body">
+			<dl class="dl-horizontal">
+			<form action ="" method="post" name="sort">
+			{{ form.hidden_tag() }}
+			<dt>书名:</dt>
+			<dd>{{form.article(class='form-control',placeholder="Enter article")}}</dd>
+			</br>
+			<dt>排名（前）:</dt>
+			<dd>{{form.sort(class='form-control',id='sort')}}</dd>
+			</br>
+			<dt>类别:</dt>
+			<dd>{{form.sort_type(class='form-control',id='sort_type')}}</dd>
+			</br>
+			</dl>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			<button type="submit" class="btn btn-primary">提交</button>
+			</div>
+			</form>
+			</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+<div class="tabbable" id="tabs-392080">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			 <a href="#1" data-toggle="tab">程序设计类</a>
+		</li>
+		<li>
+			 <a href="#2" data-toggle="tab">哲学类</a>
+		</li>
+		<li>
+			 <a href="#3" data-toggle="tab">社会科学类</a>
+		</li>
+		<li>
+			 <a href="#4" data-toggle="tab">自然科学类</a>
+		</li>
+		<li>
+			 <a href="#5" data-toggle="tab">历史类</a>
+		</li>
+		<li>
+			 <a href="#6" data-toggle="tab">综合性图书</a>
+		</li>      
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="1">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>
+							编号
+						</th>
+						<th>
+							排名
+						</th>
+						<th>
+							书名
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<td>
+							s
+						</td>
+						<td>
+							s
+						</td>
+						<td>
+							 s
+						</td>
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane" id="2">
+			<p>
+				Howdy, I'm in Section 2.
+			</p>
+		</div>
+		<div class="tab-pane" id="3">
+			<p>
+				Howdy, I'm in Section 2.
+			</p>
+		</div>
+		<div class="tab-pane" id="4">
+			<p>
+				Howdy, I'm in Section 2.
+			</p>
+		</div>
+		<div class="tab-pane" id="5">
+			<p>
+				Howdy, I'm in Section 2.
+			</p>
+		</div>
+		<div class="tab-pane" id="6">
+			<p>
+				Howdy, I'm in Section 2.
+			</p>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

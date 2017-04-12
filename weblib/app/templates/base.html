@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset = "UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+
+    <title>EcustLibrary</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{# 引入bootstrap #}
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	  <link href="/static/css/style.css?version=6" rel="stylesheet" type="text/css" media="all" />
+      <link href="/static/css/style_amdin.css?version=6" rel="stylesheet" type="text/css" media="all" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+    
+  </head>
+     <body>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<nav class="navbar navbar-default navbar-static-top role="navigation">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="/index">Ecust Library</a>
+						</div>
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>{% if current_user.is_authenticated %} {{current_user.username}} {% endif %}欢迎您！<strong class="caret"></strong></a>
+									<ul class="dropdown-menu">
+										<li>
+											 <a href="/userinfo">个人资料</a>
+										</li>
+										
+										<li>
+											 <a href="/myindex">我的发布</a>
+										</li>							
+										<li>
+											 <a href="/mysent">我的回复</a>
+										</li>
+										<li>
+											 <a href="/mytrade">我的交易</a>
+										</li>
+										<li>
+											 <a href="/myview">我的关注</a>
+										</li>
+										<li>
+											 <a href="/changeimage">修改头像</a>
+										</li>
+										<li>
+											 <a href="/changepassword">修改密码</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									{% if first_talk %}
+									 <a href="/message/{{first_talk}}" target="_blank">站内信{% if talk_cnt%}({{talk_cnt}}){% else %}(0){% endif %}</a>
+									 {% else %}
+									  <a href="#">站内信</a>
+									 {% endif %}
+								</li>
+								<li>
+									 <a href="/logout"><span class="glyphicon glyphicon-log-out"></span>登出</a>
+								</li>
+							</ul>
+						</div>	
+					</nav>
+					<img alt="140x200" src="/static/need/index.jpg" class="img-responsive center-block" width="1200" height=auto />
+					{% block nav %}
+					{% endblock %}
+					{% block content %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+   </body>
+</html>

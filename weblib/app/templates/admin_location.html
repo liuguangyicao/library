@@ -1,0 +1,90 @@
+﻿{% extends "admin.html" %}
+{% block nav %}
+<li>
+	 <a href="/admin_index">添加推荐</a>
+</li>
+
+<li>
+	 <a href="/admin_name_password">用户信息</a>
+</li>
+<li>
+	 <a href="/admin_post">用户发布</a>
+</li>
+<li>
+	 <a href="/admin_sent">用户回复</a>
+</li>
+<li>
+	 <a href="/admin_trade">用户交易</a>
+</li>
+
+<li class="active">
+	 <a href="/admin_location">座位搜索</a>
+</li>
+
+{% endblock %}
+{% block content %}
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>
+				编号
+			</th>
+			<th>
+				座位号
+			</th>
+			<th>
+				楼层
+			</th>
+			<th>
+				插座
+			</th>
+			<th>
+				近水
+			</th>
+			<th>
+				近窗
+			</th>
+			<th>
+				近电梯
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% if content %}
+	{% for i in content %}
+		<tr >
+			<td>
+				{{i.id}}
+			</td>
+			<td>
+				{{i.num}}
+			</td>
+			<td>
+				{{i.floor}} 
+			</td>
+			<td>
+				{{i.elec}}
+			</td>
+			<td>
+				{{i.water}}
+			</td>
+			<td>
+				{{i.sun}}
+			</td>
+			<td>
+				{{i.lift}}
+			</td>
+		</tr>
+	{% endfor%}
+	{% endif %}
+	</tbody>
+</table>
+<div class="ep-pages"> 
+ 
+	{% if page != 1 %}
+	<a href="/admin_location/{{page-1}}" target="_self" class="ep-pages-ctrl">&lt;</a> 
+	{% endif %}
+	 <a href="/admin_location/{{page+1}}" target="_self" class="ep-pages-ctrl">&gt;</a> 
+</div>
+
+{% endblock %}

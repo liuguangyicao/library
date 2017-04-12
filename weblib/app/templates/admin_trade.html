@@ -1,0 +1,117 @@
+﻿{% extends "admin.html" %}
+{% block nav %}
+<li>
+	 <a href="/admin_index">添加推荐</a>
+</li>
+<li>
+	 <a href="/admin_name_password">用户信息</a>
+</li>
+<li>
+	 <a href="/admin_post">用户发布</a>
+</li>
+<li>
+	 <a href="/admin_sent">用户回复</a>
+</li>
+<li class="active">
+	 <a href="/admin_trade">用户交易</a>
+</li>
+
+
+<li>
+	 <a href="/admin_location">座位搜索</a>
+</li>
+
+{% endblock %}
+{% block content %}
+<table class="table table-striped">
+	<thead>    
+		<tr>
+			<th>
+				编号
+			</th>
+			<th>
+				交易类型
+			</th>
+			<th>
+				交易内容
+			</th>
+			<th>
+				关注数
+			</th>
+			<th>
+				用户名
+			</th>
+			<th>
+				原价
+			</th>
+			<th>
+				现价
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% if content %}
+	{% for i in content %}
+		<tr>
+			<td>
+				{{i.id}}
+			</td>
+			<td>
+				{{i.trade_type}}
+			</td>
+			<td>
+				{{i.body}}
+			</td>
+			<td>
+				{{i.view}}
+			</td>
+			<td>
+				{{i.user_username}}
+			</td>
+			<td>
+				{{i.old_pay}}
+			</td>
+			<td>
+				{{i.new_pay}}
+			</td>
+		</tr>
+	{% endfor%}
+	{% endif %}
+	</tbody>
+</table>
+<div class="ep-pages"> 
+    <a href="/admin_trade" target="_self">首页</a>
+	{% if page != 1 %}
+	<a href="/admin_trade/{{page-1}}" target="_self" class="ep-pages-ctrl">&lt;</a> 
+	{% endif %}
+	{% if page_cnt <=5 %}
+		{% for num in range(1, page_cnt+1)%}
+			{% if num == page %}
+			<a href="/admin_trade/{{page}}" target="_self" class="current">{{page}}</a>
+			{% else %}
+			<a href="/admin_trade/{{num}}" target="_self">{{num}}</a>
+			{% endif %}
+		{% endfor%}
+	{% elif page < 4 %}
+		{% for num in range(1, 6)%}
+			{% if num == page %}
+			<a href="/admin_trade/{{page}}" target="_self" class="current">{{page}}</a>
+			{% else %}
+			<a href="/admin_trade/{{num}}" target="_self">{{num}}</a>
+			{% endif %}
+		{% endfor%}
+	{% else %}
+		{% for num in range(page-2, page+3)%}
+			{% if num == page %}
+			<a href="/admin_trade/{{page}}" target="_self" class="current">{{page}}</a>
+			{% else %}
+			<a href="/admin_trade/{{num}}" target="_self">{{num}}</a>
+			{% endif %}
+		{% endfor%}
+	{% endif %}
+	{% if page != page_cnt%}
+	 <a href="/admin_trade/{{page+1}}" target="_self" class="ep-pages-ctrl">&gt;</a> 
+	{% endif %}
+	 <a href="/admin_trade/{{page_cnt}}" target="_self">尾页</a>
+</div>
+{% endblock %}
