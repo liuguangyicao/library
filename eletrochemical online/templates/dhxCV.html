@@ -1,0 +1,215 @@
+﻿$def with(W1,F1,F2,F3,F4,F5,F6,F7,F8,answer1)
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="description" content="FlatBest - Responsive One Page Fast Loading">
+<meta name="keywords" content="One Page, Bootstrap, Website, Business, Resume, Portfolio, Template, Unlimited Colors">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- ===== Site Title===== -->
+<title>电化学绘图-CV</title>
+
+<!-- ===== Google Fonts ===== -->
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Raleway:500,600,700">
+
+<!-- ===== Favicon Icon ===== -->
+<link rel="icon" href="../static/images/favicon.ico">
+
+<!-- ===== Bootstrap ===== -->
+<link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
+<!-- ===== Font Icons ===== -->
+<link rel="stylesheet" href="../static/assets/font-awesome/css/font-awesome.min.css">
+
+<!-- ===== Corousel and Lightbox ===== -->
+<link rel="stylesheet" href="../static/css/owl.theme.css">
+<link rel="stylesheet" href="../static/css/owl.carousel.css">
+<link rel="stylesheet" href="../static/css/nivo-lightbox.css">
+<link rel="stylesheet" href="../static/css/themes/default/default.css">
+
+<!-- ===== Colors ===== -->
+<link rel="stylesheet" href="../static/css/colors/color.css"> 
+
+
+<!-- ===== Preloader ===== -->
+<link rel="stylesheet" href="../static/css/preloader.css">
+
+<!-- ===== style.css ===== -->
+<link rel="stylesheet" href="../static/css/style.css">
+
+<!-- ===== Responsive CSS ===== -->
+<link rel="stylesheet" href="../static/css/responsive.css">
+
+<!--[===== if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+			<script src="js/respond.min.js"></script>
+<![endif]===== -->
+
+  
+</head>
+
+
+
+<body>
+<!-- ===== preloader ===== -->
+
+
+
+<!-- ===== Header ===== -->
+<header id="home">
+
+<!-- ===== Over color Image ===== -->
+<div class="background-overlay">
+	
+	<div class="container-header">
+		
+		<!-- ===== Sticky Navigation ===== -->
+		<div class="navbar navbar-inverse bs-docs-nav navbar-fixed-top sticky-navigation bgc-two">
+			<div class="container">
+				<div class="navbar-header">
+					
+					<!-- ===== Logo on Sticky Navigation Bar ===== -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#onepage-navigation">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="homepage.html">电化学在线</a>
+					
+				</div>
+				
+				<!-- ===== Navigation Menu ===== -->
+				<div class="navbar-collapse collapse" id="onepage-navigation">
+					<ul class="nav navbar-nav navbar-right main-navigation">
+						<li><a href="homepage.html">Home</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					循环伏安
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="dhxGCD.html">恒电流充放电</a></li>
+					<li><a href="dhxRATE.html">倍率性能</a></li>
+					<li><a href="dhxCV.html">循环伏安</a></li>
+                                        <li><a href="dhxEIS.html">交流阻抗</a></li>
+				</ul>
+			</li>
+					</ul>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!-- ===== End Sticky Navigation ===== -->
+		
+	</div>
+	
+	<!-- ===== Form ===== -->
+	<!-- ===== Welcome ===== -->
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="col-md-10 col-md-offset-1 distance-header">
+				<div>
+				<h4 style="color:white">
+                    循环伏安
+	                        <button type="button" class="btn standard-button" title="循环伏安"
+                                     data-container="body" data-toggle="popover" 
+                                       data-content="循环伏安法(Cyclic Voltammetry)是一种常用的电化学研究方法。该法控制电极电势以不同的速率，随时间以三角波形一次或多次反复扫描，电势范围是使电极上能交替发生不同的还原和氧化反应，并记录电流-电势曲线。根据曲线形状可以判断电极反应的可逆程度，中间体、相界吸附或新相形成的可能性，以及偶联化学反应的性质等。常用来测量电极反应参数，判断其控制步骤和反应机理，并观察整个电势扫描范围内可发生哪些反应，及其性质如何。对于一个新的电化学体系，首选的研究方法往往就是循环伏安法，可称之为“电化学的谱图”。 ">
+                                 ?
+                                </button>
+                                </h4>
+                                </div>
+				<div class="underline"></div>
+<form id="form1" name="form1" method="post" action="">
+  <label for="a0" style="color:white">请输入样品质量(mg):</label>
+  <p>
+  <input name="W1" class="form-control" type="text" id="a0" value="$W1" />
+  <p>
+  <label for="a1" style="color:white">请选择原始数据所在的excel文档</label>
+  <p>
+  <input name="F1" class="form-control" type="file" id="a1" value="$F1" />
+  <p>
+  <input name="F2" class="form-control" type="file" id="a2" value="$F2" />
+  <p>
+  <input name="F3" class="form-control" type="file" id="a3" value="$F3" />
+  <p>
+  <input name="F4" class="form-control" type="file" id="a4" value="$F4" />
+  <p>
+  <input name="F5" class="form-control" type="file" id="a4" value="$F5" />
+  <p>
+  <input name="F6" class="form-control" type="file" id="a4" value="$F6" />
+  <p>
+  <input name="F7" class="form-control" type="file" id="a4" value="$F7" />
+  <p>
+  <input name="F8" class="form-control" type="file" id="a4" value="$F8" />
+  <button type="submit" name= "button1" class="btn standard-button">提交</button>
+  <p>
+   $answer1
+</form>
+
+<div class="row">
+<button type="button" name="button2" class="btn standard-button but">显示（隐藏）图片</button>
+<div class="abc" style="display:none"> 
+<img id="result">
+<script type="text/javascript"> 
+document.getElementById("result").src= "../static/images/cv.png?time="+ new Date().getTime();
+</script>
+</div>
+</div>
+
+				
+			</div>
+
+		</div>
+             <br>
+             <br>
+             <br>
+	     <br>
+             <br>
+	</div>
+	<!-- ===== End Welcome ===== -->
+	
+</div>
+
+</header>
+
+<!-- ===== Script Javascript ===== -->
+<script src="../static/js/echarts.js"></script>
+<script src="../static/js/preloader.js"></script>
+<script src="../static/js/retina.js"></script>
+<script src="../static/js/SmoothScroll.js"></script>
+<script src="../static/js/jquery.scrollTo.min.js"></script>
+<script src="../static/js/jquery.localScroll.min.js"></script>
+<script src="../static/js/owl.carousel.min.js"></script>
+<script src="../static/js/nivo-lightbox.min.js"></script>
+<script src="../static/js/jquery.fitvids.js"></script>
+<script src="../static/js/custom.js"></script>
+<script>
+jQuery.noConflict()
+jQuery(function (){
+    jQuery("[data-toggle='popover']").popover();
+});
+</script>
+<script>
+jQuery.noConflict()
+jQuery(document).ready(function(e) {
+    jQuery(".but").click(function(e) {
+        jQuery(".abc").toggle();
+    });
+});
+</script>
+
+
+</body>
+</html>
+

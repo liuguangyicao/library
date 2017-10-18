@@ -1,0 +1,223 @@
+﻿$def with(F1,answer1)
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="FlatBest - Responsive One Page Fast Loading">
+<meta name="keywords" content="One Page, Bootstrap, Website, Business, Resume, Portfolio, Template, Unlimited Colors">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- ===== Site Title===== -->
+<title>电化学绘图-EIS</title>
+
+<!-- ===== Google Fonts ===== -->
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Raleway:500,600,700">
+
+<!-- ===== Favicon Icon ===== -->
+<link rel="icon" href="../static/images/favicon.ico">
+
+<!-- ===== Bootstrap ===== -->
+<link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
+<!-- ===== Font Icons ===== -->
+<link rel="stylesheet" href="../static/assets/font-awesome/css/font-awesome.min.css">
+
+<!-- ===== Corousel and Lightbox ===== -->
+<link rel="stylesheet" href="../static/css/owl.theme.css">
+<link rel="stylesheet" href="../static/css/owl.carousel.css">
+<link rel="stylesheet" href="../static/css/nivo-lightbox.css">
+<link rel="stylesheet" href="../static/css/themes/default/default.css">
+
+<!-- ===== Colors ===== -->
+<link rel="stylesheet" href="../static/css/colors/color.css"> 
+
+
+<!-- ===== Preloader ===== -->
+<link rel="stylesheet" href="../static/css/preloader.css">
+
+<!-- ===== style.css ===== -->
+<link rel="stylesheet" href="../static/css/style.css">
+
+<!-- ===== Responsive CSS ===== -->
+<link rel="stylesheet" href="../static/css/responsive.css">
+
+<!--[===== if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+			<script src="js/respond.min.js"></script>
+<![endif]===== -->
+
+  
+</head>
+
+
+
+<body>
+<!-- ===== preloader ===== -->
+
+
+
+<!-- ===== Header ===== -->
+<header id="home">
+
+<!-- ===== Over color Image ===== -->
+<div class="background-overlay" style="height:100%">
+	
+	<div class="container-header">
+		
+		<!-- ===== Sticky Navigation ===== -->
+		<div class="navbar navbar-inverse bs-docs-nav navbar-fixed-top sticky-navigation bgc-two">
+			<div class="container">
+				<div class="navbar-header">
+					
+					<!-- ===== Logo on Sticky Navigation Bar ===== -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#onepage-navigation">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="homepage.html">电化学在线</a>
+					
+				</div>
+				
+				<!-- ===== Navigation Menu ===== -->
+				<div class="navbar-collapse collapse" id="onepage-navigation">
+					<ul class="nav navbar-nav navbar-right main-navigation">
+						<li><a href="homepage.html">Home</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					交流阻抗
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="dhxGCD.html">恒电流充放电</a></li>
+					<li><a href="dhxRATE.html">倍率性能</a></li>
+					<li><a href="dhxCV.html">循环伏安</a></li>
+                                        <li><a href="dhxEIS.html">交流阻抗</a></li>
+				</ul>
+			</li>
+					</ul>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!-- ===== End Sticky Navigation ===== -->
+		
+	</div>
+	
+	<!-- ===== Form ===== -->
+	<!-- ===== Welcome ===== -->
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="col-md-10 col-md-offset-1 distance-header">
+				<div>
+				<h4 style="color:white">
+                    交流阻抗
+	                        <button type="button" class="btn standard-button" title="交流阻抗"
+                                     data-container="body" data-toggle="popover" 
+                                       data-content="阻抗测量原本是电学中研究线性电路网络频率响应特性的一种方法，引用到研究电极过程，成了电化学研究中的一种实验方法。电化学阻抗谱方法是一种以小振幅的正弦波电位（或电流）为扰动信号的电化学测量方法。由于以小振幅的电信号对体系扰动，一方面可避免对体系产生大的影响，另一方面也使得扰动与体系的响应之间近似呈线性关系，这就使测量结果的数学处理变得简单。同时，电化学阻抗谱方法又是一种频率域的测量方法，它以测量得到的频率范围很宽的阻抗谱来研究电极系统，因而能比其他常规的电化学方法得到更多的动力学信息及电极界面结构的信息。 ">
+                                 ?
+                                </button>
+                                </h4>
+                                </div>
+				<div class="underline"></div>
+<form id="form1" name="form1" method="post" action="">
+  <label for="a1" style="color:white">请选择原始数据所在的excel文档</label>
+  <p>
+  <input name="F1" class="form-control" type="file" id="a1" value="$F1" />
+  <p>
+  <button type="submit" name= "button1" class="btn standard-button">提交</button>
+  <p>
+   $answer1
+</form>
+
+<div class="row">
+<button type="button" name="button2" class="btn standard-button but">显示（隐藏）图片</button>
+<div class="abc" style="display:none"> 
+<img id="result">
+<script type="text/javascript"> 
+document.getElementById("result").src= "../static/images/EIS.png?time="+ new Date().getTime();
+</script>
+</div>
+</div>
+
+				
+			</div>
+
+		</div>
+             <br>
+             <br>
+             <br>
+	     <br>
+             <br>
+             <br>
+             <br>
+             <br>
+	     <br>
+             <br>
+             <br>
+             <br>
+             <br>
+	     <br>
+             <br>
+             <br>
+             <br>
+             <br>
+	     <br>
+             <br>
+             <br>
+             <br>
+             <br>
+	     <br>
+             <br>
+             <br>
+             <br>
+             <br>
+	     <br>
+             <br>
+	</div>
+
+	<!-- ===== End Welcome ===== -->
+	
+</div>
+
+</header>
+
+<!-- ===== Script Javascript ===== -->
+<script src="../static/js/echarts.js"></script>
+<script src="../static/js/preloader.js"></script>
+<script src="../static/js/retina.js"></script>
+<script src="../static/js/SmoothScroll.js"></script>
+<script src="../static/js/jquery.scrollTo.min.js"></script>
+<script src="../static/js/jquery.localScroll.min.js"></script>
+<script src="../static/js/owl.carousel.min.js"></script>
+<script src="../static/js/nivo-lightbox.min.js"></script>
+<script src="../static/js/jquery.fitvids.js"></script>
+<script src="../static/js/custom.js"></script>
+<script>
+jQuery.noConflict()
+jQuery(function (){
+    jQuery("[data-toggle='popover']").popover();
+});
+</script>
+<script>
+jQuery.noConflict()
+jQuery(document).ready(function(e) {
+    jQuery(".but").click(function(e) {
+        jQuery(".abc").toggle();
+    });
+});
+</script>
+
+
+</body>
+</html>
+
